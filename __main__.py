@@ -22,8 +22,6 @@ def setup_debugging():
     pydevd.settrace('192.168.4.47', port=5422, stdoutToServer=True, stderrToServer=True, suspend=False)
 
 
-setup_debugging()
-
 
 def get_network_interface_ip_address(interface='eth0'):
     """
@@ -47,21 +45,21 @@ device_uuid = uuid.uuid4()
 local_ip_address = get_network_interface_ip_address(NETWORK_INTERFACE)
 
 http_server = UPNPHTTPServer(8088,
-                             friendly_name="Jambon 3000",
-                             manufacturer="Boucherie numérique SAS",
-                             manufacturer_url='http://www.boucherie.example.com/',
-                             model_description='Jambon Appliance 3000',
-                             model_name="Jambon",
-                             model_number="3000",
-                             model_url="http://www.boucherie.example.com/en/prducts/jambon-3000/",
-                             serial_number="JBN425133",
+                             friendly_name="WebConnect Subdomain",
+                             manufacturer="WebConnector World SL",
+                             manufacturer_url='https://webconnector.pro//',
+                             model_description='WebConnect T1000',
+                             model_name="WebConnect",
+                             model_number="T1000",
+                             model_url="https://webconnector.pro/de/plugandplay/",
+                             serial_number="T100",
                              uuid=device_uuid,
-                             presentation_url="http://{}:5000/".format(local_ip_address))
+                             presentation_url="https://local-smaram.webconnect.pro/"
 http_server.start()
 
 ssdp = SSDPServer()
 ssdp.register('local',
               'uuid:{}::upnp:rootdevice'.format(device_uuid),
               'upnp:rootdevice',
-              'http://{}:8088/jambon-3000.xml'.format(local_ip_address))
+              'http://{}:8088/WebConnect-T1000.xml'.format(local_ip_address))
 ssdp.run()
