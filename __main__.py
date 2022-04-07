@@ -54,7 +54,7 @@ http_server = UPNPHTTPServer(8088,
                              model_name="WebConnect",
                              model_number="T1000",
                              model_url="https://webconnector.pro/de/plugandplay/",
-                             serial_number="T100",
+                             serial_number="T1000",
                              uuid=device_uuid,
                              presentation_url="http://local-smaram.webconnect.pro".format(local_ip_address))
 http_server.start()
