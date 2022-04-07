@@ -22,6 +22,8 @@ def setup_debugging():
     pydevd.settrace('192.168.4.47', port=5422, stdoutToServer=True, stderrToServer=True, suspend=False)
 
 
+setup_debugging()
+
 
 def get_network_interface_ip_address(interface='eth0'):
     """
@@ -45,7 +47,7 @@ device_uuid = uuid.uuid4()
 local_ip_address = get_network_interface_ip_address(NETWORK_INTERFACE)
 
 http_server = UPNPHTTPServer(8088,
-                             friendly_name="WebConnect Subdomain",
+                             friendly_name="WebConnect [smaram.webconnect.pro]",
                              manufacturer="WebConnector World SL",
                              manufacturer_url='https://webconnector.pro//',
                              model_description='WebConnect T1000',
@@ -54,7 +56,7 @@ http_server = UPNPHTTPServer(8088,
                              model_url="https://webconnector.pro/de/plugandplay/",
                              serial_number="T100",
                              uuid=device_uuid,
-                             presentation_url="https://local-smaram.webconnect.pro/"
+                             presentation_url="http://local-smaram.webconnect.pro".format(local_ip_address))
 http_server.start()
 
 ssdp = SSDPServer()
